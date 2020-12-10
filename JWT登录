@@ -1,0 +1,14 @@
+相比于Session认证，使用token进行身份认证主要有三个优势：
+
+1.无状态：
+token自身包含身份认证的所有信息，服务器不需要存储session信息，减轻服务端的压力。
+缺点：后端在token有效期内废弃token或者更改权限，不会立即生效，logout后，token也有效。除非在后端增加额外的处理逻辑。
+
+2.避免CSRF攻击
+跨站请求伪造。因为session认证中Cookie中的session_id是由浏览器发送到服务端的
+而登录成功后获得token，都会存放在local storage中。前端发给后端的每个请求都携带token
+
+3.适合移动端应用
+使用session，需要保存一份在服务器段，依赖Cookie保存sessionId。
+
+4.单点登录友好：
